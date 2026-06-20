@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery — KiddiesLab</title>
+<meta name="description" content="Browse recent children's book illustration, cover design and layout work from the KiddiesLab studio.">
+<link rel="icon" href="assets/img/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF;
+  --surface:#F5F6F4;
+  --ink:#15161B;
+  --muted:#5F6571;
+  --line:#E5E7E3;
+  --accent:#137A63;
+  --accent-d:#0E5E4C;
+  --tint:#E8F1ED;
+  --maxw:1180px;
+  --pad:26px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Nunito",system-ui,sans-serif;
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:"Baloo 2",cursive;font-weight:600;line-height:1.05;margin:0;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad)}
+.muted{color:var(--muted)}
+.lead{color:var(--muted);font-size:1.12rem;max-width:56ch}
+
+/* index label (signature) */
+.label{font-family:"Nunito",sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);display:inline-flex;align-items:center;gap:.6em}
+.label::before{content:"";width:22px;height:1px;background:var(--accent)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.5em;font-family:"Nunito",sans-serif;font-weight:600;font-size:1rem;
+  padding:.78em 1.6em;border-radius:999px;border:1px solid var(--ink);background:var(--bg);color:var(--ink);
+  cursor:pointer;transition:background .18s,color .18s,border-color .18s,transform .18s}
+.btn:hover{transform:translateY(-2px)}
+.btn-fill{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn-fill:hover{background:var(--accent-d);border-color:var(--accent-d)}
+.btn-ghost:hover{background:var(--ink);color:var(--bg)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.arrow{transition:transform .18s}
+.btn:hover .arrow{transform:translateX(3px)}
+
+/* header */
+header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+.brand{display:flex;align-items:center;gap:.5em;font-family:"Baloo 2",cursive;font-weight:700;font-size:1.25rem;letter-spacing:-.02em}
+.brand i{width:12px;height:12px;border-radius:3px;background:var(--accent);display:inline-block}
+nav.links{display:flex;gap:30px;font-weight:500;font-size:.98rem}
+nav.links a{position:relative;color:var(--muted);transition:color .15s}
+nav.links a:hover{color:var(--ink)}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.burger{display:none;width:44px;height:40px;border:1px solid var(--line);border-radius:8px;background:none;cursor:pointer;
+  flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.burger span{width:18px;height:2px;background:var(--ink);border-radius:2px}
+
+/* hero */
+.hero{padding:80px 0 70px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,5.6vw,4.4rem);font-weight:600;margin:22px 0 22px}
+.hero .lead{margin-bottom:32px}
+.hero-btns{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:38px}
+.hero-meta{display:flex;gap:30px;flex-wrap:wrap;font-family:"Nunito",sans-serif;font-size:.82rem;color:var(--muted);
+  padding-top:24px;border-top:1px solid var(--line)}
+.hero-meta b{color:var(--ink);font-weight:700}
+.hero-art{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;aspect-ratio:5/6;
+  background:var(--surface)}
+.hero-art img{width:100%;height:100%;object-fit:cover}
+.hero-art .cap{position:absolute;left:16px;bottom:16px;background:rgba(255,255,255,.92);backdrop-filter:blur(4px);
+  font-family:"Nunito",sans-serif;font-size:.72rem;letter-spacing:.06em;padding:7px 12px;border-radius:7px;border:1px solid var(--line)}
+.hero-art .ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-family:"Nunito",sans-serif;font-size:.8rem}
+
+/* marquee proof */
+.proof{background:var(--surface)}
+.proof .wrap{display:flex;flex-wrap:wrap;gap:14px 40px;justify-content:center;padding:20px var(--pad);
+  font-family:"Nunito",sans-serif;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.proof span{display:inline-flex;align-items:center;gap:12px}
+.proof span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
+
+/* section frame */
+.section{padding:96px 0}
+.section.alt{background:var(--surface)}
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:50px;flex-wrap:wrap}
+.shead h2{font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:600;max-width:18ch}
+.shead .label{margin-bottom:16px}
+
+/* services list */
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line)}
+.svc{display:grid;grid-template-columns:auto 1fr;gap:26px;padding:34px 6px;border-bottom:1px solid var(--line);
+  align-items:start;transition:padding-left .2s}
+.svc:nth-child(odd){border-right:1px solid var(--line);padding-right:40px}
+.svc:nth-child(even){padding-left:40px}
+.svc:hover{padding-left:14px}
+.svc:nth-child(even):hover{padding-left:54px}
+.svc .no{font-family:"Nunito",sans-serif;color:var(--accent);font-size:.85rem;padding-top:4px}
+.svc h3{font-size:1.3rem;font-weight:600;margin-bottom:8px}
+.svc p{margin:0;color:var(--muted);font-size:1rem}
+
+/* work gallery */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tile{position:relative;aspect-ratio:5/6;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.tile:hover img{transform:scale(1.05)}
+.tile .ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-family:"Nunito",sans-serif;font-size:.8rem}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;color:#fff;font-family:"Nunito",sans-serif;
+  font-size:.74rem;letter-spacing:.06em;background:linear-gradient(transparent,rgba(21,22,27,.78));opacity:0;transition:opacity .25s}
+.tile:hover .cap{opacity:1}
+
+/* pricing */
+.pricing{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.plan{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;padding:28px 26px;background:var(--bg);
+  transition:transform .2s,box-shadow .2s}
+.plan:hover{transform:translateY(-5px);box-shadow:0 18px 40px -24px rgba(21,22,27,.28)}
+.plan.feat{border-color:var(--accent);background:var(--bg);position:relative}
+.plan.feat::after{content:"Most requested";position:absolute;top:-11px;left:26px;background:var(--accent);color:#fff;
+  font-family:"Nunito",sans-serif;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:6px}
+.plan h3{font-size:1.18rem;font-weight:600;margin-bottom:6px}
+.plan .pdesc{color:var(--muted);font-size:.93rem;margin:0 0 20px;min-height:2.4em}
+.plan .price{font-family:"Baloo 2",cursive;font-weight:700;font-size:2.6rem;line-height:1;letter-spacing:-.03em}
+.plan .per{font-family:"Nunito",sans-serif;font-size:.78rem;color:var(--muted);margin:6px 0 22px}
+.spec{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:10px;font-size:.9rem}
+.spec li{display:flex;justify-content:space-between;font-family:"Nunito",sans-serif;font-size:.8rem;color:var(--muted);
+  padding-bottom:10px;border-bottom:1px solid var(--line)}
+.spec li b{color:var(--ink);font-weight:700}
+.plan .btn{margin-top:auto;justify-content:center;width:100%}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.pstep{padding:36px 30px 36px 0;border-bottom:1px solid var(--line)}
+.pstep:not(:last-child){border-right:1px solid var(--line);padding-right:40px}
+.pstep:not(:first-child){padding-left:40px}
+.pstep .no{font-family:"Nunito",sans-serif;color:var(--accent);font-size:.85rem;margin-bottom:18px;display:block}
+.pstep h3{font-size:1.35rem;font-weight:600;margin-bottom:10px}
+.pstep p{margin:0;color:var(--muted)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.stat{padding:30px 24px;border:1px solid var(--line);border-radius:14px;background:var(--bg)}
+.stat .num{font-family:"Baloo 2",cursive;font-weight:700;font-size:3rem;line-height:1;letter-spacing:-.03em}
+.stat p{margin:8px 0 0;font-family:"Nunito",sans-serif;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+/* order */
+.order-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:start}
+.order-grid h2{font-size:clamp(2rem,4vw,3rem);font-weight:600;margin:18px 0 18px}
+.contactline{font-family:"Nunito",sans-serif;font-size:.85rem;color:var(--muted);margin-top:26px;display:grid;gap:8px}
+.contactline a{color:var(--accent)}
+form.order{border:1px solid var(--line);border-radius:18px;padding:32px;background:var(--bg)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{margin-bottom:16px}
+label{display:block;font-family:"Nunito",sans-serif;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+input,textarea{width:100%;font-family:"Nunito",sans-serif;font-size:1rem;padding:13px 15px;border:1px solid var(--line);
+  border-radius:13px;background:var(--bg);color:var(--ink);transition:border-color .15s}
+input:focus,textarea:focus{outline:none;border-color:var(--accent)}
+textarea{min-height:120px;resize:vertical}
+.formmsg{margin:14px 0 0;font-family:"Nunito",sans-serif;font-size:.85rem}
+.formmsg.ok{color:var(--accent)}.formmsg.err{color:#C0392B}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:60px 0 30px}
+.fgrid{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid var(--line)}
+footer h4{font-family:"Nunito",sans-serif;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:700}
+.fmenu{list-style:none;padding:0;margin:0;display:grid;gap:11px}
+.fmenu a{color:var(--muted)}.fmenu a:hover{color:var(--ink)}
+.social{display:flex;gap:10px;margin-top:18px}
+.social a{width:40px;height:40px;border:1px solid var(--line);border-radius:9px;display:grid;place-items:center;color:var(--ink);transition:.18s}
+.social a:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.copy{padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  font-family:"Nunito",sans-serif;font-size:.76rem;color:var(--muted)}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:920px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-art{max-width:440px}
+  .svc-grid{grid-template-columns:1fr}
+  .svc,.svc:nth-child(odd){border-right:none;padding:30px 6px}
+  .svc:nth-child(even){padding-left:6px}
+  .gal{grid-template-columns:repeat(2,1fr)}
+  .pricing{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:1fr}
+  .pstep,.pstep:not(:last-child){border-right:none;padding:30px 0}
+  .pstep:not(:first-child){padding-left:0}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .order-grid{grid-template-columns:1fr;gap:34px}
+  .fgrid{grid-template-columns:1fr;gap:28px}
+}
+@media(max-width:620px){
+  nav.links,.nav-cta .btn{display:none}
+  .burger{display:flex}
+  nav.links.open{display:flex;position:absolute;top:70px;left:0;right:0;flex-direction:column;background:var(--bg);
+    border-bottom:1px solid var(--line);padding:18px var(--pad);gap:16px}
+  .section{padding:64px 0}
+  .gal,.pricing,.stats{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+  .hero-btns .btn{flex:1;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}.reveal{opacity:1;transform:none}}
+
+/* playful shapes */
+:root{--c-sun:#FFC93C;--c-coral:#FF6B5E;--c-sky:#54B8E0}
+.wrap{position:relative;z-index:1}
+.shapes{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.shapes .sh{position:absolute;display:block;animation:bob 6s ease-in-out infinite}
+.shapes .spin{animation:spin 20s linear infinite}
+.shapes .blob{position:absolute;border-radius:50%;opacity:.45}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-13px) rotate(9deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:620px){.shapes .sh{transform:scale(.8)}.shapes .hide-sm{display:none}}
+@media(prefers-reduced-motion:reduce){.shapes .sh,.shapes .spin{animation:none}}
+
+/* wavy section edges */
+.section.alt,.proof{position:relative}
+.section.alt::before,.section.alt::after,.proof::before,.proof::after{
+  content:"";position:absolute;left:0;width:100%;height:30px;background:var(--surface);
+  z-index:1;pointer-events:none;
+  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40' preserveAspectRatio='none'><path d='M0 15 q10 -15 20 0 t20 0 V40 H0 Z' fill='white'/></svg>") repeat-x;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40' preserveAspectRatio='none'><path d='M0 15 q10 -15 20 0 t20 0 V40 H0 Z' fill='white'/></svg>") repeat-x;
+  -webkit-mask-size:44px 30px;mask-size:44px 30px}
+.section.alt::before,.proof::before{top:-29px}
+.section.alt::after,.proof::after{bottom:-29px;transform:scaleY(-1)}
+</style>
+<style>
+.phero{position:relative;background:var(--surface);padding:60px 0 66px;text-align:center;overflow:hidden}
+.phero .label{justify-content:center}
+.phero h1{font-size:clamp(2.3rem,5vw,3.5rem);margin:16px 0 16px}
+.phero p{max-width:58ch;margin:0 auto;color:var(--muted);font-size:1.1rem}
+.crumb{font-weight:700;font-size:.86rem;color:var(--muted);margin-top:20px}
+.crumb a{color:var(--accent)}
+.phero::after{content:"";position:absolute;left:0;bottom:-29px;width:100%;height:30px;background:var(--surface);
+  z-index:1;pointer-events:none;-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40' preserveAspectRatio='none'><path d='M0 15 q10 -15 20 0 t20 0 V40 H0 Z' fill='white'/></svg>") repeat-x;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40' preserveAspectRatio='none'><path d='M0 15 q10 -15 20 0 t20 0 V40 H0 Z' fill='white'/></svg>") repeat-x;
+  -webkit-mask-size:44px 30px;mask-size:44px 30px;transform:scaleY(-1)}
+.about2{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.about2 .art{border:1px solid var(--line);border-radius:18px;overflow:hidden;aspect-ratio:5/6;background:var(--surface)}
+.about2 .art img{width:100%;height:100%;object-fit:cover}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.member{border:1px solid var(--line);border-radius:18px;padding:24px;background:var(--bg);transition:transform .2s}
+.member:hover{transform:translateY(-5px)}
+.ava{width:64px;height:64px;border-radius:50%;background:var(--tint);color:var(--accent);display:grid;place-items:center;
+  font-family:"Baloo 2",cursive;font-weight:700;font-size:1.5rem;margin-bottom:14px}
+.member h3{font-size:1.15rem;margin-bottom:4px}
+.member .role{color:var(--accent);font-weight:700;font-size:.85rem;margin-bottom:10px}
+.member p{margin:0;color:var(--muted);font-size:.92rem}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.quote{border:1px solid var(--line);border-radius:18px;padding:28px;background:var(--bg);position:relative}
+.quote .qm{font-family:"Baloo 2",cursive;font-size:3rem;line-height:.6;color:var(--accent);opacity:.35}
+.quote h3{font-size:1.15rem;margin:6px 0 10px}
+.quote p{margin:0 0 16px;color:var(--muted)}
+.quote .who{font-weight:700}.quote .who span{display:block;color:var(--muted);font-weight:500;font-size:.85rem}
+.steps.four{grid-template-columns:repeat(4,1fr)}
+.cta-band{text-align:center}
+.cta-band h2{font-size:clamp(2rem,4vw,2.8rem);margin-bottom:16px}
+.cta-band p{max-width:54ch;margin:0 auto 26px;color:var(--muted)}
+.info{display:grid;gap:16px}
+.info .row{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--bg)}
+.info .ico{width:42px;height:42px;border-radius:11px;background:var(--tint);color:var(--accent);display:grid;place-items:center;flex:none}
+.info h4{font-family:"Baloo 2",cursive;font-size:1rem;margin:0 0 2px}
+.info .row p{margin:0;color:var(--muted);font-size:.95rem}
+.info a{color:var(--accent)}
+.gal.g4{grid-template-columns:repeat(4,1fr)}
+.gal.g4 .tile{cursor:pointer}
+.lb{position:fixed;inset:0;background:rgba(21,22,27,.92);display:none;place-items:center;z-index:200;padding:28px}
+.lb.open{display:grid}
+.lb img{max-width:90vw;max-height:88vh;border-radius:14px;border:3px solid #fff}
+.lb .x{position:absolute;top:20px;right:24px;color:#fff;font-size:2rem;cursor:pointer;font-family:"Baloo 2",cursive;line-height:1}
+@media(max-width:920px){.about2{grid-template-columns:1fr;gap:30px}.team{grid-template-columns:repeat(2,1fr)}
+ .quotes{grid-template-columns:1fr}.steps.four{grid-template-columns:1fr}.gal.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.team{grid-template-columns:1fr}.gal.g4{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><i></i>KiddiesLab</a>
+    <nav class="links" id="menu">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#process">Process</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-fill">Start a project</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<section class="phero">
+  <div class="shapes" aria-hidden="true"><span class='sh' style='top:24%;left:5%;width:30px'><svg viewBox='0 0 24 24' fill='var(--c-sun)'><path d='M12 1.8l2.9 6.2 6.8.7-5.1 4.6 1.5 6.7L12 17.4 5.9 20l1.5-6.7L2.3 8.7l6.8-.7z'/></svg></span><span class='sh spin' style='top:20%;right:8%;width:26px'><svg viewBox='0 0 24 24' fill='none' stroke='var(--c-coral)' stroke-width='3'><circle cx='12' cy='12' r='9'/></svg></span><span class='sh hide-sm' style='bottom:18%;left:12%;width:48px;animation-delay:.6s'><svg viewBox='0 0 64 18' fill='none' stroke='var(--accent)' stroke-width='3' stroke-linecap='round'><path d='M2 9q8-9 15 0t15 0 15 0'/></svg></span></div>
+  <div class="wrap">
+    <span class="label">Selected work</span>
+    <h1>Project gallery</h1>
+    <p>A look at recent pages — illustration, character design, covers and layouts. Tap any piece to view it larger.</p>
+    <div class="crumb"><a href="index.html">Home</a> · Gallery</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="gal g4">
+      <div class="tile reveal" data-full="assets/img/project/p-1.jpg"><div class="ph">Artwork 1</div><img src="assets/img/project/p-1.jpg" alt="Children's book illustration 1" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-2.jpg"><div class="ph">Artwork 2</div><img src="assets/img/project/p-2.jpg" alt="Children's book illustration 2" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-3.jpg"><div class="ph">Artwork 3</div><img src="assets/img/project/p-3.jpg" alt="Children's book illustration 3" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-4.jpg"><div class="ph">Artwork 4</div><img src="assets/img/project/p-4.jpg" alt="Children's book illustration 4" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-5.jpg"><div class="ph">Artwork 5</div><img src="assets/img/project/p-5.jpg" alt="Children's book illustration 5" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-6.jpg"><div class="ph">Artwork 6</div><img src="assets/img/project/p-6.jpg" alt="Children's book illustration 6" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-7.jpg"><div class="ph">Artwork 7</div><img src="assets/img/project/p-7.jpg" alt="Children's book illustration 7" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-8.jpg"><div class="ph">Artwork 8</div><img src="assets/img/project/p-8.jpg" alt="Children's book illustration 8" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-9.jpg"><div class="ph">Artwork 9</div><img src="assets/img/project/p-9.jpg" alt="Children's book illustration 9" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-10.jpg"><div class="ph">Artwork 10</div><img src="assets/img/project/p-10.jpg" alt="Children's book illustration 10" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-11.jpg"><div class="ph">Artwork 11</div><img src="assets/img/project/p-11.jpg" alt="Children's book illustration 11" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-12.jpg"><div class="ph">Artwork 12</div><img src="assets/img/project/p-12.jpg" alt="Children's book illustration 12" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-13.jpg"><div class="ph">Artwork 13</div><img src="assets/img/project/p-13.jpg" alt="Children's book illustration 13" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-14.jpg"><div class="ph">Artwork 14</div><img src="assets/img/project/p-14.jpg" alt="Children's book illustration 14" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-15.jpg"><div class="ph">Artwork 15</div><img src="assets/img/project/p-15.jpg" alt="Children's book illustration 15" onerror="this.remove()"></div>
+      <div class="tile reveal" data-full="assets/img/project/p-16.jpg"><div class="ph">Artwork 16</div><img src="assets/img/project/p-16.jpg" alt="Children's book illustration 16" onerror="this.remove()"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap cta-band reveal">
+    <span class="label" style="justify-content:center">Start your project</span>
+    <h2 style="margin-top:14px">Explore what we can create together</h2>
+    <p>We help authors, parents and creators turn ideas into beautifully illustrated children's books, ready for Amazon KDP and beyond — from character design to full book formatting.</p>
+    <a href="index.html#pricing" class="btn btn-fill">See packages &amp; order →</a>
+  </div>
+</section>
+
+<div class="lb" id="lb"><span class="x">×</span><img id="lbimg" src="" alt="Artwork preview"></div>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="brand" href="index.html"><i></i>KiddiesLab</a>
+        <p class="muted" style="margin:16px 0 0;max-width:36ch">Bringing children's stories to life — beautifully illustrated and print-ready for Amazon KDP.</p>
+        <div class="social">
+          <a href="https://www.facebook.com/share/1ELShEv9VH/?mibextid=LQQJ4d" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg></a>
+          <a href="https://www.instagram.com/kiddieslab_?igsh=MTBuODVjdjBvNGd0bg%3D%3D&utm_source=qr" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul class="fmenu">
+          <li><a href="index.html#work">Work</a></li>
+          <li><a href="index.html#pricing">Pricing</a></li>
+          <li><a href="index.html#process">Process</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul class="fmenu">
+          <li><a href="mailto:kiddieslab25@gmail.com">kiddieslab25@gmail.com</a></li>
+          <li>Mon–Sun · 9:30am–6:30pm</li>
+          <li><a href="contact.html">Start a project →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 KiddiesLab. All rights reserved.</span>
+      <span>Children's book illustration &amp; Amazon KDP</span>
+    </div>
+  </div>
+</footer>
+<script>
+var burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger&&burger.addEventListener('click',function(){menu.classList.toggle('open')});
+menu&&menu.addEventListener('click',function(e){if(e.target.tagName==='A')menu.classList.remove('open')});
+
+document.addEventListener('click',function(e){
+  var b=e.target.closest('.order-btn');if(!b)return;
+  var f=document.getElementById('pkg');if(f)f.value=b.getAttribute('data-package');
+});
+
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+var counted=false;
+function countUp(){
+  if(counted)return;var s=document.querySelector('.stats');if(!s)return;
+  if(s.getBoundingClientRect().top>window.innerHeight-80)return;counted=true;
+  document.querySelectorAll('.num').forEach(function(el){
+    var t=+el.dataset.count,c=0,step=Math.max(1,Math.round(t/40));
+    var iv=setInterval(function(){c+=step;if(c>=t){c=t;clearInterval(iv)}el.textContent=c},26);
+  });
+}
+window.addEventListener('scroll',countUp);window.addEventListener('load',countUp);
+
+var form=document.querySelector('form.order'),msg=document.getElementById('formmsg');
+form&&form.addEventListener('submit',function(e){
+  e.preventDefault();msg.textContent='Sending…';msg.className='formmsg';
+  fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+  .then(function(r){
+    if(r.ok){form.reset();msg.textContent='Thank you — we\'ll reply with samples, a quote and a timeline.';msg.className='formmsg ok';}
+    else{msg.textContent='Something went wrong. Please email kiddieslab25@gmail.com.';msg.className='formmsg err';}
+  }).catch(function(){msg.textContent='Network error. Please email kiddieslab25@gmail.com.';msg.className='formmsg err';});
+});
+</script>
+<script>
+(function(){
+  var lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg');
+  document.querySelectorAll('.gal.g4 .tile').forEach(function(t){
+    t.addEventListener('click',function(){var s=t.getAttribute('data-full');if(!s)return;lbimg.src=s;lb.classList.add('open');});
+  });
+  function close(){lb.classList.remove('open');lbimg.src='';}
+  lb&&lb.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+</script>
+</body></html>
